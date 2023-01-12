@@ -1,0 +1,6 @@
+@import "../../theme.scss";
+
+.MiniCalendar {
+  @include themeWindow();
+  display: flex;
+}

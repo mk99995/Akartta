@@ -19,10 +19,11 @@ const DotoAddItem = ({
   const handleAdd = (): void => {
     let addedItem: ListItem = { order: "noOrder", content: text };
     setListItems(listItems.concat(addedItem));
+    setText("");
   };
   return (
-    <>
-      <input type={"text"} onChange={handleInput}></input>
+    <div className="DotoAddItem">
+      <input type={"text"} onInput={handleInput} value={text} />
       <button onClick={handleAdd}>Add</button>
       <button
         onClick={() => {
@@ -31,7 +32,7 @@ const DotoAddItem = ({
       >
         Show
       </button>
-    </>
+    </div>
   );
 };
 

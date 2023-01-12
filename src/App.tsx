@@ -2,7 +2,9 @@ import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import { invoke } from "@tauri-apps/api/tauri";
 import DodoList from "./components/DotoList/DotoList";
-import "./App.css";
+import MiniCalendar from "./components/MiniCalendar/MiniCalendar";
+import TimeTable from "./components/TimeTable/TimeTable";
+import "./App.scss";
 
 function App() {
   const [greetMsg, setGreetMsg] = useState("");
@@ -13,7 +15,19 @@ function App() {
     setGreetMsg(await invoke("greet", { name }));
   }
 
-  return <DodoList />;
+  return (
+    <div className="timeWindow">
+      <div id="cont1">
+        <TimeTable />
+      </div>
+      <div id="cont2">
+        <MiniCalendar />
+      </div>
+      <div id="cont3">
+        <DodoList />
+      </div>
+    </div>
+  );
 }
 
 export default App;

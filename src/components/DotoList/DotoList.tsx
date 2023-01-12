@@ -9,9 +9,9 @@ const DodoList = (): JSX.Element => {
   const [listItems, setListItems] = React.useState<ListItem[]>([]);
 
   return (
-    <div className="DotoList">
-      <DotoAddItem listItems={listItems} setListItems={setListItems} />
+    <div className="DotoList window">
       <DotoItems listItems={listItems} setListItems={setListItems} />
+      <DotoAddItem listItems={listItems} setListItems={setListItems} />
     </div>
   );
 };

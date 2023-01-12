@@ -8,13 +8,24 @@ const DotoItems = ({
   listItems: ListItem[];
   setListItems: any;
 }): JSX.Element => {
+  const handleDelete = (deletedIndex: number): void => {
+    console.log(deletedIndex);
+    let asd = listItems;
+    console.log(asd);
+    let zxc = asd.slice(deletedIndex, 1);
+    console.log(zxc);
+
+    setListItems(listItems.filter((item, index) => index !== deletedIndex));
+  };
+
   return (
-    <div className="">
+    <div className="DotoItems">
       {listItems.map((item, index) => {
         return (
-          <>
-            <p key={index}>{item.content}</p>
-          </>
+          <p key={index}>
+            {item.content}
+            <button onClick={(): void => handleDelete(index)}>x</button>
+          </p>
         );
       })}
     </div>

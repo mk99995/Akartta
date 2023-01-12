@@ -1,0 +1,6 @@
+@import "../../theme.scss";
+
+.TimeTable {
+  @include themeWindow();
+  display: flex;
+}
