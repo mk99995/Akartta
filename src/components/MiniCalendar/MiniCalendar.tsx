@@ -3,40 +3,85 @@ import { useState } from "react";
 import { L } from "@tauri-apps/api/event-2a9960e7";
 
 const MiniCalendar = ({ time }: { time: Date }): JSX.Element => {
-  function daysInMonth(month: number, year: number) {
-    return new Date(year, month, 0).getDate();
-  }
+  // function daysInMonth(month: number, year: number) {
+  //   return new Date(year, month + 1, 0).getDate();
+  // }
 
-  const [dayds, setDays] = useState<number[]>([]);
+  const [selectedDay, setSelectedDay] = useState<Date>(time);
 
-  let selectedDay: number = time.getDate();
+  const buildMonth = (selectedDay: Date): Date[] => {
+    let monthDays: Date[] = [];
+    // let daysInSelectedMonth: number = daysInMonth(
+    //   selectedDay.getFullYear(),
+    //   selectedDay.getMonth()
+    // );
 
-  const buildMonth = (selectedDay: Date): number[] => {
-    let monthDays: number[] = [];
-    let days: number = daysInMonth(time.getMonth(), time.getFullYear());
+    //get days before begingin of month
+    let daysBefore: number;
     let firstDay: Date = new Date(
       selectedDay.getFullYear(),
-      selectedDay.getMonth()
+      selectedDay.getMonth(),
+      1
     );
-    let daysBefore: number = 7 - firstDay.getDay() - 1;
-    console.log(daysBefore, firstDay.getDay());
+    console.log(firstDay);
 
-    for (let i = -daysBefore; i < 42 - daysBefore; i++) {
-      console.log(i);
+    let firstWeekday = firstDay.getDay();
+    if (firstWeekday === 0) {
+      daysBefore = 5;
+    } else if (firstWeekday === 1) {
+      daysBefore = 6;
+    } else {
+      daysBefore = firstWeekday - 2;
+    }
 
-      firstDay.setDate(i);
-      console.log(firstDay.getDate());
+    //get days after month
+    let lastDay: Date = new Date(
+      selectedDay.getFullYear(),
+      selectedDay.getMonth() + 1,
+      0
+    );
+    console.log(lastDay.getDay());
+    let daysAfter: number = 7 - lastDay.getDay();
+    console.log(daysAfter);
 
-      monthDays.push(firstDay.getDate());
+    console.log(lastDay.getDate());
+
+    //add days to display in miniCalendar
+    for (let i = -daysBefore; i <= lastDay.getDate() + daysAfter; i++) {
+      let pushedDate = new Date(
+        selectedDay.getFullYear(),
+        selectedDay.getMonth(),
+        i
+      );
+
+      // if (pushedDate.getDay()) {
+
+      // }
+
+      monthDays.push(pushedDate);
     }
     return monthDays;
   };
-  let test = new Date(2023, 0, 14);
-  console.log(test);
 
-  console.log(buildMonth(test));
-
-  return <div className="MiniCalendar window">{}</div>;
+  return (
+    <div className="MiniCalendar window">
+      <p className="month">
+        {selectedDay.toLocaleString("en-us", { month: "long" }) +
+          " | " +
+          selectedDay.getFullYear()}
+      </p>
+      {buildMonth(selectedDay).map((day) => (
+        <div
+          className="day"
+          onClick={() => {
+            setSelectedDay(day);
+          }}
+        >
+          {day.getDate()}
+        </div>
+      ))}
+    </div>
+  );
 };
 
 export default MiniCalendar;

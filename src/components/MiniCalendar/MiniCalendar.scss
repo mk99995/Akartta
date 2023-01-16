@@ -5,4 +5,19 @@
   display: flex;
 
   color: wheat;
+
+  flex-wrap: wrap;
+
+  .month {
+    width: 100%;
+    height: 3%;
+    text-align: center;
+  }
+
+  .day {
+    width: 14%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
