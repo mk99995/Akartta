@@ -9,12 +9,13 @@ const MiniCalendar = ({ time }: { time: Date }): JSX.Element => {
 
   const [selectedDay, setSelectedDay] = useState<Date>(time);
 
-  const buildMonth = (selectedDay: Date): Date[] => {
-    let monthDays: Date[] = [];
-    // let daysInSelectedMonth: number = daysInMonth(
-    //   selectedDay.getFullYear(),
-    //   selectedDay.getMonth()
-    // );
+  interface dateWithStyle {
+    date: Date;
+    style: string;
+  }
+
+  const buildMonth = (selectedDay: Date): dateWithStyle[] => {
+    let monthDays: dateWithStyle[] = [];
 
     //get days before begingin of month
     let daysBefore: number;
@@ -23,9 +24,8 @@ const MiniCalendar = ({ time }: { time: Date }): JSX.Element => {
       selectedDay.getMonth(),
       1
     );
-    console.log(firstDay);
 
-    let firstWeekday = firstDay.getDay();
+    let firstWeekday: number = firstDay.getDay();
     if (firstWeekday === 0) {
       daysBefore = 5;
     } else if (firstWeekday === 1) {
@@ -40,25 +40,37 @@ const MiniCalendar = ({ time }: { time: Date }): JSX.Element => {
       selectedDay.getMonth() + 1,
       0
     );
-    console.log(lastDay.getDay());
     let daysAfter: number = 7 - lastDay.getDay();
-    console.log(daysAfter);
-
-    console.log(lastDay.getDate());
 
     //add days to display in miniCalendar
+    let currentDate: Date = new Date(
+      time.getFullYear(),
+      time.getMonth(),
+      time.getDate()
+    );
     for (let i = -daysBefore; i <= lastDay.getDate() + daysAfter; i++) {
-      let pushedDate = new Date(
+      let pushedDate: Date = new Date(
         selectedDay.getFullYear(),
         selectedDay.getMonth(),
         i
       );
 
-      // if (pushedDate.getDay()) {
+      let styles: string = "day";
 
-      // }
+      if (i <= 0 || i > lastDay.getDate()) {
+        styles += " offMonth";
+      }
 
-      monthDays.push(pushedDate);
+      if (pushedDate.getTime() === selectedDay.getTime()) {
+        styles += " selected";
+      }
+
+      if (pushedDate.getTime() === currentDate.getTime()) {
+        styles += " current";
+      }
+
+      let dateStyle: dateWithStyle = { date: pushedDate, style: styles };
+      monthDays.push(dateStyle);
     }
     return monthDays;
   };
@@ -70,14 +82,22 @@ const MiniCalendar = ({ time }: { time: Date }): JSX.Element => {
           " | " +
           selectedDay.getFullYear()}
       </p>
-      {buildMonth(selectedDay).map((day) => (
+      <div className="week-day">Mon</div>
+      <div className="week-day">Tue</div>
+      <div className="week-day">Wed</div>
+      <div className="week-day">Thu</div>
+      <div className="week-day">Fri</div>
+      <div className="week-day">Sat</div>
+      <div className="week-day">Sun</div>
+      {buildMonth(selectedDay).map((day, index) => (
         <div
-          className="day"
+          key={index}
+          className={day.style}
           onClick={() => {
-            setSelectedDay(day);
+            setSelectedDay(day.date);
           }}
         >
-          {day.getDate()}
+          {day.date.getDate()}
         </div>
       ))}
     </div>

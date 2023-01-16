@@ -1,7 +1,10 @@
 $tDark: #2e3745;
 $tLightDark: rgb(59, 69, 83);
+$tLightDark2: rgb(56, 64, 77);
 $tLightGray: rgb(226, 223, 223);
 $tGray: rgb(192, 192, 192);
+$tDarkOrange: hsl(34, 100%, 30%);
+$tlightOrange: hsla(34, 88%, 43%, 0.541);
 
 @mixin themeWindow {
   background-color: $tDark;
