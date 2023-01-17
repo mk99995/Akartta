@@ -2,13 +2,15 @@ import "./MiniCalendar.scss";
 import { useState } from "react";
 import { L } from "@tauri-apps/api/event-2a9960e7";
 
-const MiniCalendar = ({ time }: { time: Date }): JSX.Element => {
-  // function daysInMonth(month: number, year: number) {
-  //   return new Date(year, month + 1, 0).getDate();
-  // }
-
-  const [selectedDay, setSelectedDay] = useState<Date>(time);
-
+const MiniCalendar = ({
+  time,
+  selectedDay,
+  setSelectedDay,
+}: {
+  time: Date;
+  selectedDay: Date;
+  setSelectedDay: any;
+}): JSX.Element => {
   interface dateWithStyle {
     date: Date;
     style: string;

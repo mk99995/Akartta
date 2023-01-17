@@ -1,20 +1,20 @@
 @import "../../theme.scss";
 
-.DotoList {
+.TodoList {
   @include themeWindow();
   display: flex;
   flex-direction: column;
   align-content: flex-start;
   justify-content: space-between;
 
-  .DotoItems {
+  .TodoItems {
     background-color: $tLightGray;
     border-radius: 7px;
     height: 100%;
     width: 100%;
   }
 
-  .DotoAddItem {
+  .TodoAddItem {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;

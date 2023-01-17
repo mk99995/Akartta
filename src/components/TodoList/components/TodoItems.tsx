@@ -1,7 +1,7 @@
 import React from "react";
 import { ListItem } from "../interface";
 
-const DotoItems = ({
+const TodoItems = ({
   listItems,
   setListItems,
 }: {
@@ -19,7 +19,7 @@ const DotoItems = ({
   };
 
   return (
-    <div className="DotoItems">
+    <div className="TodoItems">
       {listItems.map((item, index) => {
         return (
           <p key={index}>
@@ -32,4 +32,4 @@ const DotoItems = ({
   );
 };
 
-export default DotoItems;
+export default TodoItems;

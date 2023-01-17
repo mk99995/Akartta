@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { ListItem } from "../interface";
 
-const DotoAddItem = ({
+const TodoAddItem = ({
   listItems,
   setListItems,
 }: {
@@ -22,7 +22,7 @@ const DotoAddItem = ({
     setText("");
   };
   return (
-    <div className="DotoAddItem">
+    <div className="TodoAddItem">
       <input type={"text"} onInput={handleInput} value={text} />
       <button onClick={handleAdd}>Add</button>
       <button
@@ -36,4 +36,4 @@ const DotoAddItem = ({
   );
 };
 
-export default DotoAddItem;
+export default TodoAddItem;
