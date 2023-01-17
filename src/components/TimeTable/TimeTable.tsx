@@ -1,6 +1,6 @@
 import "./TimeTable.scss";
 import Hour from "./Hour";
-import { useState } from "react";
+import React, { useState } from "react";
 import { a } from "@tauri-apps/api/dialog-15855a2f";
 
 const TimeTable = (): JSX.Element => {
@@ -18,7 +18,7 @@ const TimeTable = (): JSX.Element => {
       }
 
       timeTable.push(
-        <>
+        <React.Fragment key={i}>
           <tr>
             <td className="number">{}</td>
             <td className={`first${odd}`}>{}</td>
@@ -36,7 +36,7 @@ const TimeTable = (): JSX.Element => {
             <td className="number">{i === hours - 1 ? "" : i + 1 + ":00"}</td>
             <td className={`fourth${odd}`}>{}</td>
           </tr>
-        </>
+        </React.Fragment>
       );
     }
     return timeTable;
