@@ -2,6 +2,7 @@ import "./TimeTable.scss";
 import Hour from "./Hour";
 import React, { useState } from "react";
 import { a } from "@tauri-apps/api/dialog-15855a2f";
+import { Rnd } from "react-rnd";
 
 const TimeTable = (): JSX.Element => {
   const [hourList, setHourList] = useState<number[]>([]);
@@ -46,6 +47,18 @@ const TimeTable = (): JSX.Element => {
     <div className="TimeTable window">
       <table>
         <tbody>{renderTimeTable(5, 24)}</tbody>
+        <Rnd
+          className="asd"
+          position={{ x: 100, y: 100 }}
+          default={{
+            x: 0,
+            y: 0,
+            width: 320,
+            height: 200,
+          }}
+        >
+          Rnd
+        </Rnd>
       </table>
     </div>
   );
