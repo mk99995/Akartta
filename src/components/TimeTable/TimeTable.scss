@@ -1,6 +1,62 @@
 @import "../../theme.scss";
-
+::-webkit-scrollbar {
+  display: none;
+}
 .TimeTable {
   @include themeWindow();
   display: flex;
+  overflow: scroll;
+  justify-content: center;
+
+  table {
+    border-collapse: collapse;
+    width: 60%;
+    height: 100%;
+    margin-top: 1rem;
+    // border: 2px solid wheat;
+    // border: 1px solid wheat;
+    .first {
+      border-top: 2px solid wheat;
+      border-right: 2px solid wheat;
+    }
+    .second {
+      border-top: 1px dotted wheat;
+      border-right: 2px solid wheat;
+    }
+
+    .third {
+      border-top: 1px dashed wheat;
+      border-right: 2px solid wheat;
+    }
+
+    .fourth {
+      border-top: 1px dotted wheat;
+      border-right: 2px solid wheat;
+      border-bottom: 2px solid wheat;
+    }
+
+    td {
+      height: 1rem;
+    }
+    .number {
+      width: 5%;
+      position: relative;
+      top: 0.6rem;
+      border-right: 2px solid wheat;
+      text-align: right;
+      padding-right: 0.4rem;
+      padding-left: 0.4rem;
+    }
+
+    .half-hour {
+      font-size: smaller;
+    }
+
+    .number-first {
+      // border-top: 2px solid wheat;
+    }
+    .odd {
+      background-color: $tLightDark;
+    }
+  }
 }
