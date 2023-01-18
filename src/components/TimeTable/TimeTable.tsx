@@ -49,7 +49,6 @@ const TimeTable = (): JSX.Element => {
         <tbody>{renderTimeTable(5, 24)}</tbody>
         <Rnd
           className="asd"
-          position={{ x: 100, y: 100 }}
           default={{
             x: 0,
             y: 0,
