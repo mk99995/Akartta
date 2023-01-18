@@ -6,7 +6,7 @@ import TodoItems from "./components/TodoItems";
 import { ListItem } from "./interface";
 
 const TodoList = (): JSX.Element => {
-  const [listItems, setListItems] = useState<ListItem[]>([]);
+  const [listItems, setListItems] = useState<string[]>([]);
 
   return (
     <div className="TodoList window">
